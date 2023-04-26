@@ -1,4 +1,4 @@
-package com.example.test.login.entity;
+package com.example.test.login.entity.tools;
 
 import jdk.dynalink.beans.StaticClass;
 

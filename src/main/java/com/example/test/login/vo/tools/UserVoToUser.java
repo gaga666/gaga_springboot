@@ -1,6 +1,7 @@
-package com.example.test.login.vo;
+package com.example.test.login.vo.tools;
 
 import com.example.test.login.entity.User;
+import com.example.test.login.vo.UserVo;
 
 public class UserVoToUser {
     public static User toUser(UserVo userVo){

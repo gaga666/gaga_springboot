@@ -1,6 +1,6 @@
 package com.example.test.login.vo;
 
-public class UserChange {
+public class UserChangePassword {
     private String email;
     private String code;
 

@@ -1,16 +1,17 @@
-package com.example.test.entity;
+package com.example.test.login.entity;
 
 public class User {
-    String uid;
     String username;
     String password;
 
-    public String getUid() {
-        return uid;
+    String email;
+
+    public String getEmail() {
+        return email;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUsername() {

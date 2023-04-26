@@ -1,4 +1,4 @@
-package com.example.test.login.entity;
+package com.example.test.login.entity.tools;
 
 public class Result<T> {
     private String msg;

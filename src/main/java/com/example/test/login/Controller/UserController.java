@@ -1,47 +1,49 @@
-package com.example.test.Controller;
+package com.example.test.login.Controller;
 
-import com.example.test.entity.Result;
-import com.example.test.entity.User;
-import com.example.test.service.UserService;
-import org.slf4j.LoggerFactory;
+import com.example.test.login.entity.tools.Result;
+import com.example.test.login.entity.User;
+import com.example.test.login.service.MailService;
+import com.example.test.login.vo.UserChangeEmail;
+import com.example.test.login.vo.UserChangePassword;
+import com.example.test.login.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.logging.Logger;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    private static final Logger logger = (Logger) LoggerFactory.getLogger(UserController.class);
+//    private static final Logger logger = (Logger) LoggerFactory.getLogger(UserController.class);
 
     @Autowired
-    private UserService userService;
+    private MailService mailService;
 
-    /**
-     * 注册接口
-     *
-     * @param user 客户端传入的user数据
-     * @return Result<User> 返回注册成功或者注册失败的UserBean
-     */
-    @PostMapping(value = "/register")
-    public Result<User> register(@RequestBody User user){
-        logger.info("调用register,传入的user:" + user.toString());
-        return userService.register(user);
+    @PostMapping("/sendEmail")
+    @ResponseBody
+    public Result<User> sendEmail(String email){
+        return mailService.sendMimeMail(email);
     }
 
-    /**
-     * 登录接口
-     *
-     * @param user 客户端传入的user数据
-     * @return Result<User> 返回登录成功或者登录失败的UserBean
-     */
+    @PostMapping("/register")
+    @ResponseBody
+    public Result<User> register(UserVo userVo){
+        return mailService.registered(userVo);
+    }
 
-    @PostMapping(value = "/login")
-    public Result<User> login(@RequestBody User user){
-        logger.info("调用loginm传入的user:" + user.toString());
-        return userService.login(user);
+    @PostMapping("/login")
+    @ResponseBody
+    public Result<User> login(String username, String password){
+        return mailService.loginIn(username,password);
+    }
+
+    @PostMapping("/change")
+    @ResponseBody
+    public Result<User> changePw(UserChangePassword userChangePassword){
+        return mailService.changePassword(userChangePassword);
+    }
+
+    @PostMapping("/changeemail")
+    @ResponseBody
+    public Result<User> changeEmail(UserChangeEmail userChangeEmail){
+        return mailService.changeEmail(userChangeEmail);
     }
 }
